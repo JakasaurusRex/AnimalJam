@@ -9,6 +9,8 @@ color colors[] = {#ffadad, #fbe0e0, #ffd6a5, #fff0d4, #fdffb6, #ffffea, #caffbf,
               #9bf6ff, #d7f9f8, #a0c4ff, #d6e6ff, #bdb2ff, #e5d4ef, #ffc6ff, #EFC378, #CFA969, #916213};
 int backgroundColorIndex = 8;
 
+String hats[] = {"models/capy", "models/capy-croc", "models/capy-covid", "models/capy-halo", "models/capy-propellor"};
+int hatIndex = 0;
 
 PShape capy;
 PShape inverseCapy;
@@ -40,6 +42,9 @@ int modeX = width/2 - rectWidth/2;
 int modeY = 100;
 boolean transitioning = false;
 
+boolean spinning = true;
+int lastPotVal = Integer.MIN_VALUE;
+
 Serial myPort;
 String val;
 int lastInput = Integer.MIN_VALUE;
@@ -55,11 +60,11 @@ public void setup() {
 
   unloadAnimals("models");
 
-  capy = loadShape("models/animaljamcapy.obj");
-  insideCapyText = loadImage("models/insideCapy.png");
+  capy = loadShape("models/capy.obj");
+  insideCapyText = loadImage("models/capy.png");
   capy.setTexture(insideCapyText);
-  inverseCapy = loadShape("models/animaljamcapyoutline.obj");
-  outsideCapyText = loadImage("models/outsideCapy.png");
+  inverseCapy = loadShape("models/capy_outline.obj");
+  outsideCapyText = loadImage("models/capy_outline.png");
   inverseCapy.setTexture(outsideCapyText);
 
   modes = new ModeBox[numModes];
@@ -85,6 +90,7 @@ public void draw() {
       int y = xyzb[1];
       int z = xyzb[2];
       int b = xyzb[3];
+      int p = xyzb[4];
 
       println(Arrays.toString(xyzb));
 
@@ -103,8 +109,13 @@ public void draw() {
         rightInputted();
         lastInput = millis();
       }
-        
-
+      
+      if(lastPotVal == Integer.MIN_VALUE) {
+        lastPotVal = p;
+      } else if(lastPotVal != p) {
+        rotation += (p-lastPotVal)/500;
+        lastPotVal = p;
+      }
 
     }
   }
@@ -137,6 +148,15 @@ void transitionMode() {
   modes[currentMode].slideIn();
 }
 
+void updateHat() {
+  capy = loadShape(hats[hatIndex] + ".obj");
+  insideCapyText = loadImage("models/capy.png");
+  capy.setTexture(insideCapyText);
+  inverseCapy = loadShape(hats[hatIndex] + "_outline.obj");
+  outsideCapyText = loadImage("models/capy_outline.png");
+  inverseCapy.setTexture(outsideCapyText);
+}
+
 void leftInputted() {
   if (currentMode == 1) {
     if (backgroundColorIndex == 0) backgroundColorIndex = colors.length-1;
@@ -149,6 +169,10 @@ void leftInputted() {
     if (capyOutlineColorIndex == 0) capyOutlineColorIndex = colors.length-1;
     else capyOutlineColorIndex--;
     updateObjectColor(inverseCapy, colors[capyOutlineColorIndex], outsideCapyText);
+  } else if(currentMode == 4) {
+    if(hatIndex == 0) hatIndex = hats.length -1;
+    else hatIndex--;
+    updateHat();
   }
 }
 
@@ -165,6 +189,9 @@ void rightInputted() {
     else capyOutlineColorIndex++;
     updateObjectColor(inverseCapy, colors[capyOutlineColorIndex], outsideCapyText);
   } else if (currentMode == 4) {
+    if(hatIndex == hats.length-1) hatIndex = 0;
+    else hatIndex++;
+    updateHat();
   }
 }
 
@@ -332,7 +359,7 @@ void unloadAnimals(String modelsPath) {
         animal.setTexture("models/" + path.substring(path.lastIndexOf('/') + 1, path.length()));
       else if (path.contains(animal + "_outline.png"))
         animal.setOutlineTexture("models/" + path.substring(path.lastIndexOf('/') + 1, path.length()));
-      else if (path.contains(animal + "-") && path.contains("obj")) {
+      else if (path.contains(animal + "-")) {
           /*if(path.contains("_"))
             animal.addToHatOutlines();
           else if(path.contains("png"))
