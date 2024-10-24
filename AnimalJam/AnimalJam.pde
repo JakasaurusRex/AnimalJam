@@ -1,5 +1,6 @@
 import processing.opengl.*;
 import java.util.*;
+import processing.serial.*;
 
 int width = 800;
 int height = 800;
@@ -39,9 +40,18 @@ int modeX = width/2 - rectWidth/2;
 int modeY = 100;
 boolean transitioning = false;
 
+Serial myPort;
+String val;
+int lastInput = Integer.MIN_VALUE;
+int inputDiff = 250;
 
 public void setup() {
   size(800, 800, P3D);
+
+  printArray(Serial.list());   
+  String portName = Serial.list()[10];   
+  println(portName);  
+  myPort = new Serial(this, portName, 9600);
 
   unloadAnimals("models");
 
@@ -62,6 +72,43 @@ public void setup() {
 }
 
 public void draw() {
+  if(myPort.available() > 0) {
+    val = myPort.readStringUntil('\n');
+  }
+
+  val = trim(val);
+  if(val != null) {
+    int[] xyzb = int(split(val, ','));
+
+    if(xyzb.length == 5) {
+      int x = xyzb[0];
+      int y = xyzb[1];
+      int z = xyzb[2];
+      int b = xyzb[3];
+
+      println(Arrays.toString(xyzb));
+
+      if(b == 0 && transitioning == false) {
+        transitionMode();
+      }
+
+      if(z == 0) {
+         modes[currentMode].fadeIn();
+      }
+
+      if(x == 0 && millis() >= lastInput + inputDiff) {
+        leftInputted();
+        lastInput = millis();
+      } else if(x == 4095 && millis() >= lastInput + inputDiff) {
+        rightInputted();
+        lastInput = millis();
+      }
+        
+
+
+    }
+  }
+
   background(colors[backgroundColorIndex]);
   //lights
 
@@ -209,6 +256,8 @@ class ModeBox {
         fadeValue = 255;
         beginFadeIn = false;
         fadeTime = millis()/1000 + fadeTimeConstant;
+
+        transitioning = false;
       }
     }
 
