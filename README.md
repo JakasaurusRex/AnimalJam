@@ -95,6 +95,9 @@ For the modes, I had created some sprites to display in the mode label box but I
 
 In the end this is a video of what interaction with my demo looked like! 
 
+https://github.com/user-attachments/assets/06c4ec06-ecd6-45c6-957b-f92a054a899e
+
+
 
 
 
