@@ -33,7 +33,7 @@ git clone https://github.com/JakasaurusRex/AnimalJam.git
 2. Download the STL files and start your 3D print! Adjust the sizes of the holes if necessary to fit your different sized joysticsk, buttons or potentiometer
 3. Setup your circuit with your ESP32 on a breadboard as explained later!
 4. Open then .ino file in arudino folder in your Arudino IDE and upload it to your connected ESP32 with the circuit setup - ensure that all the connections are working using the serial monitor.
-5. Open up the processing file and try to run Animal Jam. Ensure that all the buttons are working and behaving as expected. Feel free to exchange the 3D models for other files and adjust the filenames accordingly in the program.
+5. Open up the processing file and try to run Animal Jam. Ensure that all the buttons are working and behaving as expected - make sure to change the port being read from if it is not the same as mine. Feel free to exchange the 3D models for other files and adjust the filenames accordingly in the program.
 6. Now that the interactive enviornment is setup and working. Use a soldering iron + cables to connect the input devices to M-F cables connected to the ESP32. Make sure not to solder directly to the ESP32 pins.
 7. Place the soldered circuit into the 3D printed enclosure once it is finished and screw the enclosure together using long screws that can connect the 2 pieces.
 8. Display and have fun!
