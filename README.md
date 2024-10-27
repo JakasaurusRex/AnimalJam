@@ -66,7 +66,7 @@ https://github.com/user-attachments/assets/95524574-d8b4-4d58-8bdc-5e6aabddf95a
 
 In order to design the enclosure, I used the website onshape! I knew that I wanted to use screws to connect a top piece to a bottom piece because I figured that would be easy! I also wanted to abstract all the wiring for a user so that they would not need to worry about the implementation of how everything was connected and just have the ESP32's USB-C port available on one end of the enclosure. I had to make the enclosure large to accomodate for the fact that the ESP would also be in it. In order to create the hole sizes, I used size measurements during class to make holes necessary for the input devices. To get the sizes of the holes for the screws, I looked at the size of the screws that were available to me in the makerspace and used that as reference for the sizes of the holes. 
 
-Everything ended up working out mostly perfectly. I think something to note about my enclosure is that there is nothing that supports the input devices, so its pretty easy for them to fall out of place, which is problematic. I would recommend for people following this guide to fix that, and that is something that I would fix in the future for updates to this device. I additionally sanded the bottom and corners so that it was more smooth. I tried to create rounded corners in onshape but the corners were sharper than I expected they were going to be. 
+Everything ended up working out mostly perfectly. I think something to note about my enclosure is that there is nothing that supports the input devices, so its pretty easy for them to fall out of place, which is problematic. I would recommend for people following this guide to fix that by printing some supports within the enclosure. To fix this temporarily I used a copius amount of tape and some foam to support things. I additionally sanded the bottom and corners so that it was more smooth. I tried to create rounded corners in onshape but the corners were sharper than I expected they were going to be. 
 
 ![image](https://github.com/user-attachments/assets/187e86f9-8bb3-4772-9fbc-0c61c453453f)
 
@@ -76,7 +76,14 @@ Just the bottomn:
 Just the top: 
 ![image](https://github.com/user-attachments/assets/3f6ff325-8599-4d43-b39b-3a7ade00a150)
 
-Here is a video showcasing the enclosure!
+Here is a picture of the inside of the device and a video showcasing the enclosure!
+
+![image](https://github.com/user-attachments/assets/2b36bd73-7f7c-49ee-8e57-a48b3c2ae320)
+
+https://github.com/user-attachments/assets/42c44762-8b96-49dd-bc4c-e2d736336ae4
+
+
+
 
 ## Creating the App 
 
