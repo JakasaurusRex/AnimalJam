@@ -14,7 +14,7 @@ https://github.com/user-attachments/assets/d0af194a-caa4-4f50-9c3e-f8f28727a78c
 
 ## What is this? 🎨
 
-For our second module in Creative Embedded Systems, our class was tasked to create interactive display using our ESP32s to serial write user input with Joysticks, Buttons and Potentiometers and Processing's ability to serial read to use the user input in an interesting way! The goal of my interactive display was to create a fun and silly interactive 3D model viewer to let you customize your own low poly animal scene. I also created a controller that housed the ESP32 so that it was easy to plug and play with any computer running processing!
+For our second module in Creative Embedded Systems, our class was tasked to create interactive display using our ESP32s to serial write user input with Joysticks, Buttons and Potentiometers and Processing's ability to serial read to use the user input in an interesting way! The goal of my interactive display was to create a fun and silly interactive 3D model viewer to let you customize your own low poly animal scene. I also created a controller that housed the ESP32 so that it was easy and seamless to plug and play with any computer running processing!
 
 Here are some of the tools and materials that I used to create the project and what you would need to replicate it:  
 - ESP32 TTGO T-display + USB-C Cable
@@ -78,11 +78,22 @@ Here is a video showcasing the enclosure!
 
 ## Creating the App 
 
-Creating the app was definitely the longest part of this process! I knew the idea in my head I wanted to go for so it was pretty easy to get started. First I worked on getting a capybara spinning to start my work. In order to display any 3D model in Processing it is actually quite easy. Processing has a built in .obj file reader where it can display a 3D object with the materials of the object applied to it. Additionally, it can use textures to texture a 3D model. This was awesome, but .obj files have a lack of important features that I wanted to use in order to create an outline for my models and it was critical to me to get a rendered outline to create the vibe I wanted for the project. It ended up taking quite some time to figure out how to get this working. I outline the process for creating the outline in my blog update, but essentially, I utilized backface culling and inverted normals with a different texture to accomplish the goal I was wanting. After that was done I was able to display the following. 
+Creating the app was definitely the longest part of this process! I knew the idea in my head I wanted to go for so it was pretty easy to get started. First I worked on getting a capybara spinning to start my work. 
+
+In order to create the 3D models I used blender and followed this tutorial by [sneepsnorp3d, my inspiration for the project](https://www.youtube.com/watch?v=sFWlIXKcqXY&t=3s&ab_channel=sneepsnorp3d). I then created an extra outline object and objects that included different hats including a Propellor hat, Halo ring, Croc, and a gas mask. In order to display any 3D model in Processing it is actually quite easy. Processing has a built in .obj file reader where it can display a 3D object with the materials of the object applied to it. Additionally, it can use textures to texture a 3D model. This was awesome, but .obj files have a lack of important features that I wanted to use in order to create an outline for my models and it was critical to me to get a rendered outline to create the vibe I wanted for the project. It ended up taking quite some time to figure out how to get this working. I ended up following a bunch of guides and posts on the processing forum page and stack overflow in order to get everything working how I wanted. I outline the process for creating the outline in my blog update, but essentially, I utilized backface culling and inverted normals with a different texture to accomplish the goal I was trying to display. After that was done I was able to display the following. 
 
 ![capyspin](https://github.com/user-attachments/assets/98538975-145c-446e-9e4d-4de30dec2986)
 
-After getting the basic capybara spinning working, I started working on setting up new modes so that you could change the background color, the capybaras color, the outline color and the capybaras hat. This was less time consuming, but I was designing code that would be flexible for multiple animals. Because of this, I ended up spending a lot of time working on a file parsing system to open files and read them which I actually didn't end up using in the end since I didn't have enough time to make additional models and hats. I also spent a lot of time designing my own animation system to change the modes which I also wanted to use to change the animals. In the end Processing has so many features that make it really easy and fun to create stuff like this, so it wasn't for naught because I learned so much about processing! In the end this is a video of what interaction with my demo looks like! 
+After getting the basic capybara spinning working, I started working on setting up new modes so that you could change the background color, the capybaras color, the outline color and the capybaras hat. This was less time consuming, but I was designing code that would be flexible for multiple animals. Because of this, I ended up spending a lot of time working on a file parsing system to open files and read them which I actually didn't end up using in the end since I didn't have enough time to make additional models and hats. I also spent a lot of time designing my own animation system to change the modes which I also wanted to use to change the animals. In the end Processing has so many features that make it really easy and fun to create stuff like this, so it wasn't for naught because I learned so much about processing!
+
+My animation system for swapping modes can be found in the ModeBox class and the parsing and animal generic code was in the Animal Class and the functions above it. Additionallly, most of my preliminary testing was done using user input provided by a keyboard so I have some events that handle user input with a keyboard.
+
+For the modes, I had created some sprites to display in the mode label box but I ended not not using them. Heres what they looked like though!
+
+![image](https://github.com/user-attachments/assets/d65a2e7c-476c-4acc-ab95-caf277d592e9)
+
+
+In the end this is a video of what interaction with my demo looked like! 
 
 
 
