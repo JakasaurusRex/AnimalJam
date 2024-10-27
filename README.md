@@ -8,6 +8,8 @@ Because Processing and Arudino IDE require the files to be in projects with the 
 
 There is also a folder in the root directory containing the stl files for the enclosure! There is one stl for the top piece and one for the bottom piece that are connected with a screw!
 
+Lastly, there is a .vscode directory within the processing project folder, this is because I used vscode to develop needed some files in order to run the processing programs within vscode, I left it in the repo since it was useful for me developing between multiple devices and might be useful for further development in vscode.
+
 ## The final product!!
 
 https://github.com/user-attachments/assets/d0af194a-caa4-4f50-9c3e-f8f28727a78c
