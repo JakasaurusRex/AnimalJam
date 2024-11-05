@@ -80,7 +80,10 @@ Here is a picture of the inside of the device and a video showcasing the enclosu
 
 ![image](https://github.com/user-attachments/assets/2b36bd73-7f7c-49ee-8e57-a48b3c2ae320)
 
-https://github.com/user-attachments/assets/42c44762-8b96-49dd-bc4c-e2d736336ae4
+
+https://github.com/user-attachments/assets/1f8010a3-3569-4fb8-86d7-84a5928ead06
+
+
 
 
 
